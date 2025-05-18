@@ -4,7 +4,7 @@
 
 ## 1. Project Overview
 
-**Description:** A mobile poker game (Expo-based) allowing guests and signed-in users to play Texas Hold’em public tables against other players (human or AI bots), track stats, and purchase cosmetic items.
+**Description:** A mobile poker game (Expo-based) allowing guests and signed-in users to play Texas Hold'em public tables against other players (human or AI bots), track stats, and purchase cosmetic items.
 
 **Objectives & Goals:**
 
@@ -48,7 +48,7 @@
 
 - **Game Flow:**
 
-  - Standard Texas Hold’em rules.
+  - Standard Texas Hold'em rules.
   - Blinds rotate; server enforces pot, bets, and round transitions.
 
 - **Backend Authority:**
@@ -64,12 +64,12 @@
   - **Purchase History:** Store transaction log.
   - **Restore Purchases:** Via Auth.js integration.
 
-### 3.3 Store (Bottom Nav Tab)
+### 3.3 Store (Bottom Nav Tab)
 
 - Avatar icons and reaction packs (v1.1).
 - **Clarification Needed:** SKU catalog, pricing tiers, currencies.
 
-### 3.4 Stats (Bottom Nav Tab)
+### 3.4 Stats (Bottom Nav Tab)
 
 - Basic public-table stats: wins/losses over 1d, 1w, 1m, all-time.
 - Detailed charts in v1.2.
@@ -99,7 +99,7 @@
 
 ## 6. User Flow (Happy Path)
 
-1. **Open App:** Home screen shows Play tab with “Join Public Table.”
+1. **Open App:** Home screen shows Play tab with "Join Public Table."
 2. **Join Public Table:** Client sends WebSocket `join_table` request.
 3. **Server Matches or Creates Table:** Ensures ≥4 seats; fills bots if needed.
 4. **Gameplay:** Server drives betting rounds; clients send moves via sockets & await acknowledgments.
@@ -109,7 +109,7 @@
 
 ## 7. Implementation Roadmap & Steps
 
-### Phase 1: Public-Table Core (v1.0)
+### Phase 1: Public-Table Core (v1.0)
 
 1. **Repo & CI Setup**
 2. **Backend Skeleton:** Express + Socket.IO server.
@@ -128,9 +128,9 @@
    - WebSocket client for moves & acknowledgments.
 
 8. **Stats API:** Aggregate wins/losses.
-9. **QA & Testing:** Unit tests for matchmaking & game logic; end‑to‑end play tests.
+9. **QA & Testing:** Unit tests for matchmaking & game logic; end-to-end play tests.
 
-### Phase 2: Profiles & Store (v1.1)
+### Phase 2: Profiles & Store (v1.1)
 
 1. **Auth Integration:** Sign-up/in flows; token storage.
 2. **Profile UI:** Display coins, avatar.
@@ -138,7 +138,7 @@
 4. **Restore Purchases Logic.**
 5. **Testing & Bugfixes.**
 
-### Phase 3: Analytics & Polish (v1.2)
+### Phase 3: Analytics & Polish (v1.2)
 
 1. **Stats UI Enhancements:** Charts for session history.
 2. **Time-Series API:** Detailed coin & win-rate data.
@@ -150,4 +150,4 @@
 
 - Store SKU catalog, pricing, currency options.
 
-Please review these lobby specs and socket integration details to confirm before we begin Phase 1 implementation. Let me know if anything else needs clarifying!
+Please review these lobby specs and socket integration details to confirm before we begin Phase 1 implementation. Let me know if anything else needs clarifying!

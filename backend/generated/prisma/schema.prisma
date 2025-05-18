@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(uuid())
+  username  String   @unique
+  email     String?  @unique
+  avatar    String?
+  coins     Int      @default(0)
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  players   Player[]
+  // Add more fields as needed (e.g., purchase history)
+}
+
+model GameSession {
+  id        String   @id @default(uuid())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  players   Player[]
+  hands     Hand[]
+  // Add more fields as needed (e.g., status, buy-in, etc.)
+}
+
+model Player {
+  id            String      @id @default(uuid())
+  user          User?       @relation(fields: [userId], references: [id])
+  userId        String?
+  gameSession   GameSession @relation(fields: [gameSessionId], references: [id])
+  gameSessionId String
+  seatNumber    Int
+  isBot         Boolean     @default(false)
+  buyIn         Int
+  hands         Hand[]
+  // Add more fields as needed (e.g., stats, balance at table, etc.)
+}
+
+model Hand {
+  id            String      @id @default(uuid())
+  gameSession   GameSession @relation(fields: [gameSessionId], references: [id])
+  gameSessionId String
+  player        Player      @relation(fields: [playerId], references: [id])
+  playerId      String
+  cards         String // Store as JSON or string (e.g., "[\"AS\",\"KH\"]")
+  result        String?
+  createdAt     DateTime    @default(now())
+  // Add more fields as needed (e.g., bet, action, etc.)
+}
